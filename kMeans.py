@@ -17,9 +17,9 @@ def buildGraph(alpha, k,dim):
     
 def kMeans():
     ### Parameters you can vary ###
-    alpha = 1e-3 # Learning Rate
+    alpha = 1e-2 # Learning Rate
     features = 3 # Number of features you want to use
-    epochs = 800 # Number of Epochs
+    epochs = 70 # Number of Epochs
     k = 2 # Number of clusers
     a = Data(False,features) # Change to True if you want to find the top X features. If set to False, this will use the top 3 features that are set as SV%, EVGF, and EVGA 
     ### End of Parameter you can vary ###
@@ -50,13 +50,11 @@ def kMeans():
         assignV = np.argmin(distV,0)
         assignT = np.argmin(distT,0)
 
-        # Plot scatter plots
-        plt.scatter(trainData, assign, mU, trainTarget)      
-        plt.scatter(validData, assignV, mU,validTarget)
+        # Plot scatter plot for test set. 
         plt.scatter(testData, assignT, mU, testData.index) # Send index to show team name on plot
                
-        print("\nTraining Set Accuracy is: ", np.mean(trainTarget == assign))
-        print("Validation Set Accuracy is: ", np.mean(validTarget == assignV))
+        print("\nTraining Set Accuracy is: ", np.mean(trainTarget == assign)*100)
+        print("Validation Set Accuracy is: ", np.mean(validTarget == assignV)*100)
         return assign, assignV, assignT
 
 

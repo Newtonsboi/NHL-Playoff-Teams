@@ -31,15 +31,14 @@ def scatter(X, cluster, mU, n): # Scatter function for kMeans
     ax = Axes3D(fig)
     ax.scatter(X.iloc[:, 0], X.iloc[:, 1], X.iloc[:,2], c= cluster, s=20, cmap='RdBu')
     plt.title("Scatter Plot of Normalized Parameters", fontsize= 32)
-    ax.set_xlabel(X.columns[0])
-    ax.set_ylabel(X.columns[1])
+    ax.set_xlabel(X.columns[0], fontsize = 20)
+    ax.set_ylabel(X.columns[1], fontsize = 20)
     ax.zaxis.set_rotate_label(False) 
-    ax.set_zlabel(X.columns[2],  rotation = 0)
+    ax.set_zlabel(X.columns[2],  rotation = 0, fontsize = 20)
     
-    if X.shape[0] == 31:
-        for i in range(len(X)): #plot each point and its index as text above. Only for test data
-            ax.text(X.iloc[i,0],X.iloc[i,1],X.iloc[i,2],  '%s' % (str(n[i])), size=8, zorder=1,  
-                color='k')
+    for i in range(len(X)): #plot each point and its index as text above. Only for test data
+        ax.text(X.iloc[i,0],X.iloc[i,1],X.iloc[i,2],  '%s' % (str(n[i])), size=13, zorder=1,  
+            color='k')
     plt.show()
 
 def logNet(trainLoss,validLoss,trainAcc,validAcc,epochs): # Plotting function for both Logistic and Neural Net 
