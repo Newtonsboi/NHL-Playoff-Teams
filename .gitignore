@@ -1,2 +1,4 @@
 *.pyc
 *.png
+LaTex/
+__pycache__/

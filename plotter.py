@@ -44,21 +44,19 @@ def scatter(X, cluster, mU, n): # Scatter function for kMeans
 def logNet(trainLoss,validLoss,trainAcc,validAcc,epochs): # Plotting function for both Logistic and Neural Net 
     plt.figure(1)
     plt.clf()
+    plt.subplot(211)
     plt.plot(trainLoss, 'k-', label=r'Training Set', linewidth = 4, color = 'blue')
     plt.plot(validLoss, 'b-', label=r'Validation Set', linewidth = 4, color = 'orange')
     plt.title('Loss Plot', fontsize = 32)
-    plt.xlabel('Epoch', fontsize = 30)
     plt.xlim(0,epochs)
     plt.ylabel('Loss Value', fontsize = 30)
     plt.legend(ncol=1, fontsize = 16)
     plt.xticks(fontsize = 20)
     plt.yticks(fontsize = 20)
     plt.grid(which = 'both', axis = 'both')
-    plt.show()
-
-
-    plt.figure(2)
-    plt.clf()
+    
+    plt.subplots_adjust(hspace=0.5)
+    plt.subplot(212)
     plt.plot(trainAcc, 'k-', label=r'Training Set', linewidth = 4, color = 'blue')
     plt.plot(validAcc, 'b-', label=r'Validation Set', linewidth = 4, color = 'orange')
     plt.title('Accuracy Plot', fontsize = 32)

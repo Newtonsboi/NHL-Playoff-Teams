@@ -33,7 +33,7 @@ def Logistic():
    batch_size = 13 # Batch size. Number must be a factor of training set size
    features = 3 # Number of features you want to use
    epochs = 200 # Number of Epochs  
-   regularization = 0.0 # Regularizastion term
+   regularization = 0.01 # Regularizastion term
    a = Data(False,features) # Change to True if you want to find the top X features. If set to False, this will use the top 3 features that are set as SV%, EVGF, and EVGA 
    ### End of Parameter you can vary ###
 
@@ -83,3 +83,5 @@ if __name__ == "__main__":
    Final_Weight, Final_Bias, testData, predict = Logistic()
    predict=np.reshape(np.asarray(predict),(-1,1))
    plt.postProcess(testData,1-predict)
+   print(Final_Weight)
+   print(Final_Bias)
