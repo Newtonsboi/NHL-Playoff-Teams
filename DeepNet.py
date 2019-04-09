@@ -34,8 +34,7 @@ def buildGraph(dim, alpha,dropProb, hiddenUnits):
     toReLU = tf.cond(isTraining, lambda: tf.nn.dropout(layer2, rate = dropProb), lambda: layer2) # Insert condition for dropout or not. Dropout only used when training
     x2 = tf.nn.relu(toReLU) # ReLu based on condition
 
-    layer3 = tf.nn.bias_add(tf.matmul(x2, weights['w3']), biases['b3']) # Dot product to make the last layer
-    predict = tf.nn.softmax(layer3) # Use softmax to come up with probability values
+    predict = tf.nn.bias_add(tf.matmul(x2, weights['w3']), biases['b3']) # Dot product to make the last layer
 
     loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=yTarget, logits=predict)) +reg*(tf.nn.l2_loss(weights['w1']) + tf.nn.l2_loss(weights['w2'])+tf.nn.l2_loss(weights['w3'])) # Loss function
 
