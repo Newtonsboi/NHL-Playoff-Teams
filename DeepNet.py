@@ -55,7 +55,7 @@ def DeepNet():
     hiddenUnits = 500 # Number of hidden layers
     regularization = 0.01 # Regularizastion term
     a = Data(False,features) # Change to True if you want to find the top X features. If set to False, this will use the top 3 features that are set as SV%, EVGF, and EVGA 
-################################    
+### End of Parameter you can vary ###
 
     trainData, trainTarget, validData, validTarget, testData = a.featureExtractor() # Condense number of columns to top X features
     trainTarget = a.convertOneHot(trainTarget) # One hot training targets
