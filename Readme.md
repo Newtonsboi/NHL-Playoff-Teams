@@ -1,13 +1,4 @@
-**ECE1513: Machine Learning Project**
-
-Predicting NHL Playoff Teams
-
-**Omar Ismail**
-
-University of Toronto\
-April 2019
-
-Introduction {#introduction .unnumbered}
+Introduction
 ============
 
 The excitement level of millions of people rises each October as the NHL
@@ -22,7 +13,7 @@ be in the playoffs this year? This is the question we are trying to
 answer. As of writing this report, the regular season has ended, so we
 can compare our machine-learned predictions to reality.
 
-Making the Data-set {#making-the-data-set .unnumbered}
+Making the Data-set
 ===================
 
 The first step is making the data-set. We will use historical data
@@ -36,7 +27,7 @@ consists of 33 features. As our data-set is not large and we have a lot
 of features, we want to avoid over-fitting. To do so, we need to cut
 down the number of features.
 
-Feature Selection {#feature-selection .unnumbered}
+Feature Selection
 -----------------
 
 We want to be able to predict a playoff team without knowing the team’s
@@ -66,7 +57,7 @@ Goals For(EVGF). These 3 features are the ones we will use going
 forward. Note, that the code has the capability of choosing more than 3
 features.
 
-Using K-Means to Classify {#using-k-means-to-classify .unnumbered}
+Using K-Means to Classify
 =========================
 
 In this section we use K-Means to see if we can distinguish between
@@ -77,7 +68,7 @@ the actual targets for both training and validation sets. We then look
 at how this year’s teams cluster using K-Means and comment on how
 accurate that is.
 
-Results and Discussion {#results-and-discussion .unnumbered}
+Results and Discussion
 ----------------------
 
 First, we show our training and validation set plots in the figure
@@ -125,7 +116,7 @@ Figure \[fig:my\_label\] below. Some observations:
     year’s data is 71%, which is close to the training and validation
     accuracy.
 
-Using Logistic Regression {#using-logistic-regression .unnumbered}
+Using Logistic Regression
 =========================
 
 In this section and the next, we factor into our training and validation
@@ -138,7 +129,7 @@ Adam Optimizer to find the weights and biases that minimize the model
 above, and add a regularization term of 0.01 to avoid over-fitting the
 data.
 
-Results and Discussion {#results-and-discussion-1 .unnumbered}
+Results and Discussion
 ----------------------
 
 The loss and accuracy plots on the training and validation data is shown
@@ -188,7 +179,7 @@ For predicted first round match-ups, only 3 of the match-ups were
 predicted correctly: Boston vs Toronto, Calgary vs Colorado, and Vegas
 vs San Jose. From these, 1 had the seeding incorrect: Vegas vs San Jose.
 
-Using Neural Network to Classify {#using-neural-network-to-classify .unnumbered}
+Using Neural Network to Classify 
 ================================
 
 Now we look at a more complicated supervised learning algorithm: a
@@ -197,7 +188,7 @@ the and the layer. The hidden unit layers each have 500 nodes. The
 drop-out rate is set to 0.5, and just like in logistic regression, the
 regularization is set to 0.01.
 
-Results and Discussion {#results-and-discussion-2 .unnumbered}
+Results and Discussion 
 ----------------------
 
 The loss and accuracy plots are shown below:
@@ -227,7 +218,7 @@ vs St. Louis. Note that Winnipeg and St. Louis finished with the same
 amount of points this year, but the tie-breaker for the higher seed went
 to Winnipeg!
 
-Conclusion {#conclusion .unnumbered}
+Conclusion
 ==========
 
 In this project, our goal was to see if we can use data to analyze what
