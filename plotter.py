@@ -5,7 +5,7 @@ import pandas as pd
 
 
 
-def kMeansP(trainLoss, validLoss, numTrain,numValid,epochs,k=2):
+def kMeansP(trainLoss, validLoss, numTrain,numValid,epochs,k=2): # Plotting function for kMeans
     plt.figure(1)
     plt.clf()
     plt.plot(trainLoss/numTrain, 'k-', label=r'Training Set', linewidth = 4, color = 'blue')
@@ -26,7 +26,7 @@ def kMeansP(trainLoss, validLoss, numTrain,numValid,epochs,k=2):
 
 
 
-def scatter(X, cluster, mU, n):
+def scatter(X, cluster, mU, n): # Scatter function for kMeans
     fig = plt.figure()
     ax = Axes3D(fig)
     ax.scatter(X.iloc[:, 0], X.iloc[:, 1], X.iloc[:,2], c= cluster, s=20, cmap='RdBu')
@@ -37,12 +37,12 @@ def scatter(X, cluster, mU, n):
     ax.set_zlabel(X.columns[2],  rotation = 0)
     
     if X.shape[0] == 31:
-        for i in range(len(X)): #plot each point + it's index as text above
+        for i in range(len(X)): #plot each point and its index as text above. Only for test data
             ax.text(X.iloc[i,0],X.iloc[i,1],X.iloc[i,2],  '%s' % (str(n[i])), size=8, zorder=1,  
                 color='k')
     plt.show()
 
-def logNet(trainLoss,validLoss,trainAcc,validAcc,epochs):
+def logNet(trainLoss,validLoss,trainAcc,validAcc,epochs): # Plotting function for both Logistic and Neural Net 
     plt.figure(1)
     plt.clf()
     plt.plot(trainLoss, 'k-', label=r'Training Set', linewidth = 4, color = 'blue')
@@ -74,7 +74,7 @@ def logNet(trainLoss,validLoss,trainAcc,validAcc,epochs):
     plt.show()
 
 
-def postProcess(testData, winner):
+def postProcess(testData, winner): # First round match-up predictor for Neural Net and Logistic
     testData["Playoff Chances"] = winner[:,0]
     Atlantic = testData.filter(['Tampa Bay Lightning','Boston Bruins', 'Toronto Maple Leafs','Montreal Canadiens','Ottawa Senators', 'Florida Panthers','Buffalo Sabres', 'Detroit Red Wings'],axis=0)
     Atlantic = Atlantic.sort_values("Playoff Chances",ascending=False)
