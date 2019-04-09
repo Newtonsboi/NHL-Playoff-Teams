@@ -2,26 +2,27 @@ import tensorflow as tf
 import numpy as np
 import plotter as plt
 from genData import Data
+from sklearn.utils import shuffle
 
 
 def buildGraph(dim, alpha,dropProb, hiddenUnits):
     tf.reset_default_graph() # Clear any previous junk
     tf.set_random_seed(421)
 
-    labels = tf.placeholder(shape=(None, 2), dtype='int32')
-    reg = tf.placeholder(tf.float32,None, name='regulaizer')
-    isTraining = tf.placeholder(tf.bool)
+    labels = tf.placeholder(shape=(None, 2), dtype='int32') # Label Placeholder, this is 0 or 1
+    reg = tf.placeholder(tf.float32,None, name='regulaizer') # Regularization Placeholder
+    isTraining = tf.placeholder(tf.bool) # Used for Dropout
 
-    weights = {
-    'w1': tf.get_variable('W1', shape=(dim,hiddenUnits), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
-    'w2': tf.get_variable('W2', shape=(hiddenUnits,hiddenUnits), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
-    'w3': tf.get_variable('W3', shape=(hiddenUnits,2), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
+    weights = {  # Dictionary for the different weights. Used Xavier Ini
+    'w1': tf.get_variable('W1', shape=(dim,hiddenUnits), initializer=tf.initializers.he_uniform()),
+    'w2': tf.get_variable('W2', shape=(hiddenUnits,hiddenUnits), initializer=tf.initializers.he_uniform()),
+    'w3': tf.get_variable('W3', shape=(hiddenUnits,2), initializer=tf.initializers.he_uniform()),
 
 }
     biases = {
-    'b1': tf.get_variable('B1', shape=(hiddenUnits), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
-    'b2': tf.get_variable('B2', shape=(hiddenUnits), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
-    'b3': tf.get_variable('B3', shape=(2), initializer=tf.contrib.layers.xavier_initializer(uniform = False)),
+    'b1': tf.get_variable('B1', shape=(hiddenUnits), initializer=tf.initializers.he_uniform()),
+    'b2': tf.get_variable('B2', shape=(hiddenUnits), initializer=tf.initializers.he_uniform()),
+    'b3': tf.get_variable('B3', shape=(2), initializer=tf.initializers.he_uniform()),
 
 }
     X = tf.placeholder(tf.float32, shape=(None, dim))
@@ -47,16 +48,16 @@ def buildGraph(dim, alpha,dropProb, hiddenUnits):
     return optimizer, loss, X, labels, reg, accuracy, predict, isTraining
 
 def CNN():
-    dim = 4
+    dim = 3
     a = Data(False,dim)
     trainData, trainTarget, validData, validTarget, testData = a.featureExtractor()
     trainTarget = a.convertOneHot(trainTarget)
     validTarget = a.convertOneHot(validTarget)
 
-    alpha = 1e-4
+    alpha = 1e-3
     dropProb = 0.5
     batch_size = 13
-    epochs = 150 
+    epochs = 200 
     hiddenUnits = 500
     regularization = 0.01
 
@@ -72,8 +73,10 @@ def CNN():
         batch_number = int(trainTarget.shape[0]/batch_size) # Calculate batch number
 
         for i in range(epochs): # Loop across epochs
-            Y_split = np.split(trainTarget,batch_number) # Split into the number of batches
+            trainData, trainTarget = shuffle(trainData,trainTarget)
+            
             X_split = np.split(trainData,batch_number) # Split into the number of batches
+            Y_split = np.split(trainTarget,batch_number) # Split into the number of batches
 
             for j in range(len(X_split)): # Loop through each batch
            # Let us OPTIMIZE! Set isTraining to True to enable dropout for training only
