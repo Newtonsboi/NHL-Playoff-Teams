@@ -1,3 +1,7 @@
+UNDER CONSTRUCTION
+============
+
+
 Hi!
 
 There are 3 algorithms implemented for this project:
@@ -12,8 +16,6 @@ When you open one of the 3 algorithm files, just hit run and the program will ru
 If you like the code, follow me on GitHub: https://github.com/Newtonsboi to look at other projects I'm working on. (shameless self-promo)
 
 Enjoy!
-
-Newtonsboi
 
 ============
 
