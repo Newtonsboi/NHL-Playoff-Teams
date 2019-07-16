@@ -13,7 +13,7 @@ The other .py files are helper functions I implemented. genData.py loads, genera
 
 When you open one of the 3 algorithm files, just hit run and the program will run! If you search "Parameters", you can find the location in the code where you can play around with the parameters.
 
-If you like the code, follow me on GitHub: https://github.com/Newtonsboi to look at other projects I'm working on. (shameless self-promo)
+If you like the code, follow me on GitHub: https://github.com/omarismail94 to look at other projects I'm working on. (shameless self-promo)
 
 Enjoy!
 
