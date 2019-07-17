@@ -24,7 +24,7 @@ class Data:
         combinedData = combinedData.drop(removeIndices,axis=1) # Remove the indices
         combinedData = combinedData.sample(frac=1, random_state=421) # Shuffle the dataset
         unFilteredtrainData = combinedData.iloc[:,:-1] # Seperate the training data from the training targets
-        trainTargets = combinedData.iloc[:,-1]-1
+        trainTargets = combinedData.iloc[:,-1]
     
         unFilteredtestData = pd.read_csv("The PLAYOFFS - 2018.csv") # Import test set, which is this year's data
         unFilteredtestData.iloc[:,1] = unFilteredtestData.iloc[:,1].map(lambda x: x.strip('*'))
