@@ -3,6 +3,9 @@ import numpy as np
 import plotter as plt
 from genData import Data
 from sklearn.utils import shuffle
+import os
+
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 
 def buildGraph(dim, alpha,dropProb, hiddenUnits):
